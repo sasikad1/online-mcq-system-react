@@ -1,8 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 import '../css/Login.css'
 function Login() {
+    const navigate = useNavigate();
+
+    const goToHome = () => {
+        navigate('/home');
+    };
     return (
-        <div className="App">
+        <div className="Login">
             <h1>Login</h1>
             <form onSubmit={""} className="m-5 form-login">
                 <div className="form-group">
@@ -15,7 +21,7 @@ function Login() {
                 </div>
                 <button type="submit" className="btn btn-primary m-4">Submit</button>
             </form>
-            <button type="submit" className="btn btn-success">Home Page</button>
+            <button onClick={goToHome} className="btn btn-success">Home Page</button>
 
         </div>
     );

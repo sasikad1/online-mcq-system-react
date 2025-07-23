@@ -1,19 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/Exam.css'
 import { useNavigate } from 'react-router-dom';
-import '../css/User.css'
-function User() {
+function Exam() {
     const navigate = useNavigate();
 
     const goToHome = () => {
         navigate('/home');
     };
     return (
-        <div className='User'>
-            <h1>User</h1>
+        <div className='Exam'>
+            <h1>Exam</h1>
             <button onClick={goToHome} className="btn btn-success">Home Page</button>
         </div>
-        
-    );
+    )
 }
 
-export default User;
+export default Exam;
