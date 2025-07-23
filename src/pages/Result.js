@@ -1,12 +1,27 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import '../css/Result.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 function Result() {
     const navigate = useNavigate();
 
     const goToHome = () => {
         navigate('/home');
     };
+
+    const [results, setResult] = useState(null);
+    useEffect(() => {
+        axios.get("http://localhost:8081/api/results")
+            .then(function (response) {
+                setResult(response.data);
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, []);
+
     return (
         <div className='Result'>
             <div className="ResultHeader">
@@ -27,36 +42,30 @@ function Result() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            {/* <td>1</td> */}
-                            <td>Sasika</td>
-                            <td>java</td>
-                            <td>5</td>
-                            <td>11:30</td>
-                            <td>Q1,Q2,Q3,Q4,Q5</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            {/* <td>2</td> */}
-                            <td>Dilum</td>
-                            <td>DBMS</td>
-                            <td>4</td>
-                            <td>5:00</td>
-                            <td>Q1,Q2,Q4,Q5</td>
-                            <td>Q3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            {/* <td>3</td> */}
-                            <td>Fire</td>
-                            <td>Algo</td>
-                            <td>3</td>
-                            <td>3:50</td>
-                            <td>Q2,Q4,Q5</td>
-                            <td>Q1,Q3</td>
-                        </tr>
+                        {
+                            results && results.map((row) => (
+                                <tr key={row.id}>
+                                    <th scope='row'>{row.id}</th>
+                                    <td>{row.userName}</td>
+                                    <td>{row.examName}</td>
+                                    <td>{row.score}</td>
+                                    <td>{row.submittedAt}</td>
+                                    <td>{row.correctQuestions && row.correctQuestions.join('|| ')}</td>
+                                    <td>{row.incorrectQuestions && row.incorrectQuestions.join('|| ')}</td>
+                                </tr>
+                            ))
+
+                        }
+
+                        {
+                            results && (
+                                <tr className="table-secondary">
+                                    <td colSpan="7" className="text-center">
+                                        Total Results: {results.length}
+                                    </td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>

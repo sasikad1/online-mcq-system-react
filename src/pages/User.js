@@ -1,12 +1,28 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
-import '../css/User.css'
+import '../css/User.css';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 function User() {
     const navigate = useNavigate();
+    const [users, setUsers] = useState([]);
 
     const goToHome = () => {
         navigate('/home');
     };
+
+    useEffect(() => {
+        axios.get("http://localhost:8081/api/users/")
+            .then(function (response) {
+                setUsers(response.data);
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
+
     return (
         <div className="User">
             <div className="UserHeader">
@@ -23,27 +39,19 @@ function User() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Sasika</td>
-                            <td>sasi@gamil.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Dilum</td>
-                            <td>dil@gamil.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Fire</td>
-                            <td>fi@gmail.com</td>
-                        </tr>
+                        {
+                            users && users.map((row) => (
+                                <tr key={row.id}>
+                                    <th scope="row">{row.id}</th>
+                                    <td>{row.name}</td>
+                                    <td>{row.email}</td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
-
-
     );
 }
 
