@@ -7,6 +7,8 @@ import Result from './pages/Result';
 import User from './pages/User';
 import Login from './pages/Login';
 import Exam from './pages/Exam';
+import TakeExam from './pages/TakeExam';
+import Score from './pages/Score';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path='/result' element={<Result />}/>
         <Route path='/user' element={<User />}/>
         <Route path='/exam' element={<Exam />}/>
+        <Route path='/takeExam' element={<TakeExam />}/>
+        <Route path='/score' element={<Score />}/>
       </Routes>
     </Router>
   );

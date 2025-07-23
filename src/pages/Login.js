@@ -10,7 +10,7 @@ function Login() {
     return (
         <div className="Login">
             <h1>Login</h1>
-            <form onSubmit={""} className="m-5 form-login">
+            <form onSubmit={""} className="m-5 form-login  border p-4 rounded">
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">User Name</label>
                     <input type="text" className="form-control in" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />

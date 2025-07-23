@@ -16,11 +16,13 @@ function Home() {
     return (
         <div className='Home'>
             <h1>Home</h1>
-            <button onClick={goToResult} className='btn btn-primary'>Results</button>
-            <br /><br />
-            <button onClick={goToUser} className='btn btn-primary'>Users</button>
-            <br /><br />
-            <button onClick={goToExam} className='btn btn-primary'>Exam</button>
+            <div className='button-container'>
+                <button onClick={goToResult} className='btn btn-primary'>Results</button>
+                <br /><br />
+                <button onClick={goToUser} className='btn btn-primary'>Users</button>
+                <br /><br />
+                <button onClick={goToExam} className='btn btn-primary'>Exam</button>
+            </div>
         </div>
     );
 }

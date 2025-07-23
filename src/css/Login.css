@@ -1,0 +1,16 @@
+*{
+    margin: 5px;
+}
+
+.Login {
+  height: 100vh;                /* Full screen height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* Center vertically */
+  align-items: center;         /* Center horizontally */
+  background-color: #f8f9fa;   /* Optional: light background */
+}
+
+.form-login {
+  width: 300px;                /* Optional: set form width */
+}

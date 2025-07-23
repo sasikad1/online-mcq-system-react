@@ -1,0 +1,32 @@
+* {
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+.Exam {
+  /* Optional: you can add max-width to center it */
+  max-width: 90%;
+  margin: 0 auto;  /* center horizontally */
+  /* padding for spacing */
+  padding: 10px 20px;
+}
+
+.ExamHeader {
+  display: flex;
+  align-items: center;              /* Vertically center items */
+  justify-content: space-between;   /* Push h1 left and button right */
+  position: sticky;                 /* Keep it visible on scroll */
+  top: 0;                          /* Stick to top */
+  background-color: white;          /* Cover content behind */
+  padding: 10px 20px;
+  z-index: 10;                     /* Stay on top */
+  border-bottom: 1px solid #ddd;   /* Border similar to UserHeader */
+}
+
+.content {
+  max-height: 400px;     /* Limit height */
+  overflow-y: auto;      /* Enable vertical scrolling */
+  width: 90%;            /* Width like UserContent */
+  margin: 0 auto;        /* Center horizontally */
+  padding-top: 20px;
+}

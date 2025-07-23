@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 
-.User {
+.Score {
     /* Optional: you can add max-width to center it */
     max-width: 90%;
     margin: 0 auto;
@@ -12,7 +12,7 @@
     padding: 10px 20px;
 }
 
-.UserHeader {
+.ScoreHeader {
     display: flex;
     align-items: center;
     /* Vertically center items */
@@ -31,7 +31,7 @@
     /* Optional: add a bottom border */
 }
 
-.UserContent {
+.ScoreContent {
     max-height: 400px;
     overflow-y: auto;
     width: 90%;

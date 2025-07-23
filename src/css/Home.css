@@ -1,0 +1,23 @@
+*{
+    margin: 5px;
+}
+
+.Home {
+  height: 100vh; /* full screen height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  text-align: center;
+  background-color: #f8f9fa; /* optional: light background */
+}
+
+.button-container {
+  margin-top: 50px;
+}
+
+
+button {
+  width: 200px;   /* optional: consistent button size */
+}
+
