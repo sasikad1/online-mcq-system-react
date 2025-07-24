@@ -1,15 +1,33 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Exam.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 function Exam() {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const searchParams = new URLSearchParams(location.search);
+    const userId = searchParams.get('userId');
 
     const goToHome = () => {
         navigate('/home');
     };
-    const goToTackExam = () => {
-        navigate('/takeExam')
-    }
+    const goToTakeExam = (examId) => {
+        navigate(`/takeExam/${examId}?userId=${userId}`);
+    };
+    const [exams, setExam] = useState([]);
+    useEffect(() => {
+        axios.get("http://localhost:8081/api/exams")
+            .then(function (response) {
+                setExam(response.data);
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, [])
+
     return (
 
         <div className='Exam'>
@@ -28,37 +46,24 @@ function Exam() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            {/* <td>1</td> */}
-                            <td>java</td>
-                            <td>jjjjjjjjjj</td>
-                            <td>
-                                <button onClick={goToTackExam} className='btn btn-warning'>Start Exam</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            {/* <td>2</td> */}
-                            <td>DBMS</td>
-                            <td>DDDDDDDDD</td>
-                            <td>
-                                <button onClick={goToTackExam} className='btn btn-warning'>Start Exam</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            {/* <td>3</td> */}
-                            <td>Algo</td>
-                            <td>AAAAAAAA</td>
-                            <td>
-                                <button onClick={goToTackExam} className='btn btn-warning'>Start Exam</button>
-                            </td>
-                        </tr>
+                        {
+                            exams && exams.map((row) => (
+                                < tr key={row.id}>
+                                    <th scope="row">{row.id}</th>
+                                    <td>{row.title}</td>
+                                    <td>{row.description}</td>
+                                    <td>
+                                        <button onClick={() => goToTakeExam(row.id)} className='btn btn-warning'>
+                                            Start Exam
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     )
 }
 

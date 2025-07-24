@@ -21,7 +21,7 @@ function App() {
         <Route path='/result' element={<Result />}/>
         <Route path='/user' element={<User />}/>
         <Route path='/exam' element={<Exam />}/>
-        <Route path='/takeExam' element={<TakeExam />}/>
+        <Route path='/takeExam/:id' element={<TakeExam />}/>
         <Route path='/score' element={<Score />}/>
       </Routes>
     </Router>
