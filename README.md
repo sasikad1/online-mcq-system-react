@@ -30,7 +30,7 @@ Currently hosted and tested locally. See below for setup instructions.
 ![Take Exam](src/screenshots/take-exam.png)
 
 > Score Page  
-![Score](src/screenshots/score.png)
+![Score](src/screenshots/score1.png)
 
 > Result List  
 ![Results](src/screenshots/results.png)
