@@ -88,16 +88,36 @@ function Score() {
     const userId = searchParams.get('userId');
     const examId = searchParams.get('examId');
 
+    // useEffect(() => {
+    //     axios.post(`http://localhost:8081/api/results?userId=${userId}&examId=${examId}`)
+    //         .then(response => {
+    //             setResult(response.data);
+    //             console.log("Received result:", result);
+    //         })
+    //         .catch(error => {
+    //             console.error("Error fetching result:", error);
+    //         });
+    // }, [userId, examId]);
+
     useEffect(() => {
-        axios.get(`http://localhost:8081/api/results?userId=${userId}&examId=${examId}`)
-            .then(response => {
+        const fetchResult = async () => {
+            try {
+                const response = await axios.post('http://localhost:8081/api/results', {
+                    userId: userId,
+                    examId: examId
+                });
                 setResult(response.data);
-                console.log(response.data);
-            })
-            .catch(error => {
+                console.log("Received result:", response.data);
+            } catch (error) {
                 console.error("Error fetching result:", error);
-            });
+            }
+        };
+
+        if (userId && examId) {
+            fetchResult();
+        }
     }, [userId, examId]);
+
 
     const goToHome = () => {
         navigate('/home');
@@ -119,23 +139,23 @@ function Score() {
                             </tr>
                             <tr>
                                 <th>Subject</th>
-                                <td>{result.examTitle}</td>
+                                <td>{result.examName}</td>
                             </tr>
                             <tr>
                                 <th>Score</th>
-                                <td>{result.percentage}%</td>
+                                <td>{result.score}</td>
                             </tr>
                             <tr>
                                 <th>Correct Answers</th>
-                                <td>{result.correctAnswers}</td>
+                                <td>{result.correctAnswers ?? result.answers?.filter(a => a.correct).length}</td>
                             </tr>
                             <tr>
                                 <th>Incorrect Answers</th>
-                                <td>{result.incorrectAnswers}</td>
+                                <td>{result.incorrectAnswers ?? result.answers?.filter(a => !a.correct).length}</td>
                             </tr>
                             <tr>
                                 <th>Submitted At</th>
-                                <td>{result.submittedAt}</td>
+                                <td>{new Date(result.submittedAt).toLocaleString()}</td>
                             </tr>
                         </tbody>
                     </table>
